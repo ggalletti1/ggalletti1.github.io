@@ -10,9 +10,9 @@
    "share": 4.2
   },
   "breakeven": {
-   "fill": 0.5213,
+   "fill": 0.5136,
    "miles": 245,
-   "target": 470
+   "target": 477
   },
   "efficiency": {
    "fill": 0.7053,
@@ -61,13 +61,13 @@
   "month": "2026-10",
   "miles": 245,
   "ev_total": 115.0,
-  "gas_total": 59.92,
+  "gas_total": 59.12,
   "ev_cpm": 0.469,
-  "gas_cpm": 0.245,
-  "break_even_miles": 470,
+  "gas_cpm": 0.241,
+  "break_even_miles": 477,
   "assumptions": {
    "gas_mpg": 25.0,
-   "gas_price": 6.114,
+   "gas_price": 6.033,
    "gas_price_as_of": "2026-10-24"
   }
  },

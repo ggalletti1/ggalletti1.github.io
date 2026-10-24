@@ -7,7 +7,7 @@ function renderCost(d) {
     row('Charging cost', usd(c.ev_total, 2)) +
     row('Same miles in a gas car', usd(c.gas_total, 2)) +
     row('Break-even', `${num(c.miles)} of ${num(c.break_even_miles)} mi`) +
-    `<p class="note">Gas ${usd(a.gas_price, 2)}/gal in San Diego (${day(a.gas_price_as_of)}), ${num(a.gas_mpg)} mpg</p>`);
+    `<p class="note">Gas ${usd(a.gas_price, 2)}/gal in California</p>`);
   const e = d.expenses || {};
   $('expenses').innerHTML = card('Other costs',
     `<p class="big">${usd(e.total, 2)}</p><p class="sub">Since ${day(d.tracked_since)}, besides charging</p>` +
