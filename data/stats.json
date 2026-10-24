@@ -1,7 +1,6 @@
 {
  "last_updated": "2026-10-24",
- "last_reading": "2026-10-24",
- "tracked_since": "2026-10-17",
+ "month": "2026-10",
  "rings": {
   "update": {
    "fill": 0.0478,
@@ -72,7 +71,6 @@
   }
  },
  "expenses": {
-  "since": "2026-10-01",
   "total": 901.41,
   "by_category": [
    {

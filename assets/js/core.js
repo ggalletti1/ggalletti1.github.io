@@ -3,6 +3,7 @@
 const $ = id => document.getElementById(id);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const MONTH = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const day = s => { if (!s) return '—'; const [y, m, d] = s.split('-').map(Number); return `${MON[m - 1]} ${d}`; };
 const usd = (v, dp = 0) => v == null ? '—' : (v < 0 ? '−' : '') + '$' + Math.abs(v).toLocaleString('en-US', {minimumFractionDigits: dp, maximumFractionDigits: dp});
 const num = (v, dp = 0) => v == null ? '—' : Number(v).toLocaleString('en-US', {minimumFractionDigits: dp, maximumFractionDigits: dp});

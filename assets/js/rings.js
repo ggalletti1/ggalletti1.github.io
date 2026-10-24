@@ -44,7 +44,7 @@ function renderRings(d) {
   const fills = [u.fill || 0, g.fill || 0, c.fill || 0], svg = $('rings');
   const pct = v => v == null ? '—' : `${num(v, v < 10 ? 1 : 0)}%`;
   const rows = [
-    ['r', 'Update', u.state === 'pending' ? 'Coming' : u.state === 'up_to_date' ? 'Up to date' : pct(u.value)],
+    ['r', 'Update odds', u.state === 'pending' ? 'Coming' : u.state === 'up_to_date' ? 'Up to date' : pct(u.value)],
     ['g', 'Break-even', g.target ? `${num(g.miles)}/${num(g.target)}<small>mi</small>` : '—'],
     ['c', 'Efficiency', c.value != null ? `${num(c.value, 1)}/${num(c.epa, 1)}<small>mi/kWh</small>` : '—'],
   ];
