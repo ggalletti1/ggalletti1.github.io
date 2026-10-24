@@ -10,6 +10,6 @@ function renderCost(d) {
     `<p class="note">Gas ${usd(a.gas_price, 2)}/gal in California</p>`);
   const e = d.expenses || {};
   $('expenses').innerHTML = card('Other costs',
-    `<p class="big">${usd(e.total, 2)}</p><p class="sub">Since ${day(d.tracked_since)}, besides charging</p>` +
+    `<p class="big">${usd(e.total, 2)}</p><p class="sub">Since ${day(e.since || d.tracked_since)}, besides charging</p>` +
     (e.by_category || []).map(x => row(x.category[0].toUpperCase() + x.category.slice(1), usd(x.total, 2))).join(''));
 }

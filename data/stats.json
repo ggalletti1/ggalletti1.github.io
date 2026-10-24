@@ -72,8 +72,13 @@
   }
  },
  "expenses": {
-  "total": 728.55,
+  "since": "2026-10-01",
+  "total": 901.41,
   "by_category": [
+   {
+    "category": "insurance",
+    "total": 172.86
+   },
    {
     "category": "registration",
     "total": 708.55
