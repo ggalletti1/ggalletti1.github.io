@@ -4,10 +4,10 @@
  "tracked_since": "2026-10-17",
  "rings": {
   "update": {
-   "fill": 0.0458,
+   "fill": 0.0465,
    "value": 4.6,
    "state": "rolling",
-   "share": 3.9
+   "share": 4.0
   },
   "breakeven": {
    "fill": 0.4402,
@@ -47,7 +47,7 @@
   "next": {
    "build": "2026.38.5.10",
    "fsd": "14.3.13",
-   "share": 3.9
+   "share": 4.0
   }
  },
  "charging": {
