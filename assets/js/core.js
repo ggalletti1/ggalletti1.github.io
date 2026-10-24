@@ -19,7 +19,7 @@ const card = (title, body) => `<h2>${esc(title)}</h2>${body}`;
     root.dataset.mode = mode; root.dataset.theme = t; root.style.colorScheme = t;
     const m = document.querySelector('meta[name="theme-color"]'); if (m) m.content = t === 'light' ? '#f5f5f7' : '#050506';
     const label = mode[0].toUpperCase() + mode.slice(1);
-    btn.title = btn.ariaLabel = 'Theme: ' + label; const tx = btn.querySelector('.tl-txt'); if (tx) tx.textContent = label;
+    btn.title = 'Theme: ' + label; btn.setAttribute('aria-label', 'Theme: ' + label);
     items.forEach(i => i.setAttribute('aria-checked', String(i.dataset.mode === mode)));
   }
   const open = () => { wrap.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); (items.find(i => i.dataset.mode === mode) || items[0]).focus(); };

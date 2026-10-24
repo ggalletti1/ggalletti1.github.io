@@ -5,18 +5,18 @@
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--fg)}
 .wrap{max-width:880px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left)) 0 max(16px,env(safe-area-inset-right))}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0 6px;flex-wrap:wrap}
-h1{font-size:28px;font-weight:700;letter-spacing:-.02em;margin:0}h1 span{color:var(--acc)}
-.tb-r{display:flex;gap:8px;align-items:center}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:18px 0 6px;flex-wrap:nowrap;min-width:0}
+h1{font-size:clamp(20px,6.2vw,28px);white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis;font-weight:700;letter-spacing:-.02em;margin:0}h1 span{color:var(--acc)}
+.tb-r{display:flex;gap:8px;align-items:center;flex:none}
 .updated{color:var(--mute);font-size:13px;margin:2px 0 14px}
 /* theme menu */
 .theme-wrap{position:relative}
-.theme-btn{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:17px;border:1px solid var(--line);background:var(--card);color:var(--fg);font:inherit;font-size:13px;cursor:pointer}
+.theme-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;padding:0;border-radius:17px;border:1px solid var(--line);background:var(--card);color:var(--fg);font:inherit;cursor:pointer}.theme-btn .ic{width:16px;height:16px}
 .theme-btn .ic{display:none}[data-mode=system] .ic-system,[data-mode=light] .ic-light,[data-mode=dark] .ic-dark{display:block}
-.theme-menu{position:absolute;right:0;top:40px;min-width:150px;padding:6px;border-radius:12px;background:var(--card);border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.35);display:none;z-index:5}
+.theme-menu{position:absolute;right:0;left:auto;top:40px;width:max-content;max-width:calc(100vw - 24px);padding:6px;border-radius:12px;background:var(--card);border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.35);display:none;z-index:5}
 .theme-wrap.open .theme-menu{display:block}
-.tm-item{display:flex;align-items:center;gap:8px;width:100%;padding:8px 10px;border:0;border-radius:8px;background:none;color:var(--fg);font:inherit;font-size:14px;cursor:pointer;text-align:left}
-.tm-item:hover,.tm-item:focus{background:var(--line);outline:none}.tm-item span{flex:1}.tm-item .ck{visibility:hidden}.tm-item[aria-checked=true] .ck{visibility:visible}
+.tm-item{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:9px 10px;border:0;border-radius:8px;background:none;color:var(--fg);font:inherit;font-size:14px;cursor:pointer;text-align:left}
+.tm-item:hover,.tm-item:focus{background:var(--line);outline:none}.tm-item span{flex:1}.tm-item .ck{visibility:hidden}.tm-item[aria-checked=true] .ck{visibility:visible}.tm-item[aria-checked=true]{color:var(--acc);background:var(--line)}.tm-item .tm-ic{width:18px;height:18px}
 .cta-btn{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-radius:17px;background:var(--acc);color:#fff;text-decoration:none;font-size:13px;font-weight:600}
 /* rings card */
 /* rings: on the page (follow the theme), SVG so they are resolution-independent */
@@ -47,3 +47,5 @@ h1{font-size:28px;font-weight:700;letter-spacing:-.02em;margin:0}h1 span{color:v
 .hist{list-style:none;margin:8px 0 0;padding:0;font-size:13px;color:var(--mute)}.hist li{display:flex;justify-content:space-between;padding:4px 0}.hist li.cur{color:var(--fg)}.hist i{font-style:normal;opacity:.7}
 footer{color:var(--mute);font-size:12px;padding:10px 16px 30px;text-align:center}
 .note{color:var(--mute);font-size:12px;margin:8px 0 0}
+
+@media (max-width:400px){.cta-btn{padding:0 11px;gap:4px}.tb-r{gap:6px}}
