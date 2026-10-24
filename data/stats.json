@@ -1,0 +1,114 @@
+{
+ "last_updated": "2026-10-23",
+ "last_reading": "2026-10-23",
+ "tracked_since": "2026-10-17",
+ "car": "2025 Model 3 Premium AWD",
+ "shares_as_of": "2026-10-19",
+ "rings": {
+  "update": {
+   "fill": 0.0458,
+   "value": 4.6,
+   "build": "2026.38.5.10",
+   "fsd": "14.3.13",
+   "state": "rolling",
+   "share": 3.9
+  },
+  "breakeven": {
+   "fill": 0.4402,
+   "miles": 206,
+   "target": 468
+  },
+  "efficiency": {
+   "fill": 0.7554,
+   "value": 2.91,
+   "epa": 3.846,
+   "kwh": 70.9,
+   "miles": 206
+  }
+ },
+ "software": {
+  "current": "2026.38.5.1",
+  "current_fsd": "14.3.12",
+  "history": [
+   {
+    "version": "2026.38.5.1",
+    "fsd": "14.3.12",
+    "date": "2026-10-19",
+    "current": true
+   },
+   {
+    "version": "2026.27.11",
+    "fsd": "14.3.10",
+    "date": "2026-09-28",
+    "current": false
+   },
+   {
+    "version": "2026.26.6.5",
+    "fsd": "14.3.8",
+    "date": null,
+    "current": false
+   }
+  ],
+  "pending": null,
+  "next": {
+   "build": "2026.38.5.10",
+   "fsd": "14.3.13",
+   "state": "rolling",
+   "share": 3.9,
+   "wave": null,
+   "value": 4.6
+  }
+ },
+ "charging": {
+  "month": "2026-10",
+  "home_kwh": 70.9,
+  "home_sessions": 3,
+  "home_cost": 115.0,
+  "sc_kwh": 0,
+  "sc_sessions": 0,
+  "sc_cost": 0,
+  "sc_estimated": false,
+  "cheap_share": 1.0
+ },
+ "cost": {
+  "month": "2026-10",
+  "miles": 206,
+  "ev_total": 115.0,
+  "gas_total": 50.57,
+  "ev_cpm": 0.558,
+  "gas_cpm": 0.245,
+  "saved": -64.43,
+  "break_even_miles": 468,
+  "assumptions": {
+   "home_flat_usd_month": 115.0,
+   "gas_mpg": 25.0,
+   "gas_price": 6.137,
+   "gas_price_as_of": "2026-10-23",
+   "gas_price_source": "AAA San Diego regular, current average"
+  }
+ },
+ "miles": {
+  "month": "2026-10",
+  "month_miles": 206,
+  "odometer": 26734,
+  "tracked_miles": 206,
+  "avg_day": 34.3
+ },
+ "expenses": {
+  "total": 728.55,
+  "entries": 3,
+  "by_category": [
+   {
+    "category": "registration",
+    "total": 708.55
+   },
+   {
+    "category": "other",
+    "total": 20.0
+   }
+  ]
+ },
+ "referral": {
+  "url": "https://ts.la/giovanni87739"
+ }
+}

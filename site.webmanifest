@@ -1,0 +1,15 @@
+{
+  "name": "Giovanni's Tesla",
+  "short_name": "Giovanni's Tesla",
+  "description": "Live stats and software updates for a 2025 Model 3.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#050506",
+  "theme_color": "#050506",
+  "icons": [
+    {"src": "/assets/icon-ecg-192.png?v=e244390b07", "sizes": "192x192", "type": "image/png"},
+    {"src": "/assets/icon-ecg-512.png?v=4b9fff3f40", "sizes": "512x512", "type": "image/png"},
+    {"src": "/assets/icon-ecg-maskable-512.png?v=dd4cb8faf0", "sizes": "512x512", "type": "image/png", "purpose": "maskable"},
+    {"src": "/assets/icon.svg?v=a3839d4df4", "sizes": "any", "type": "image/svg+xml"}
+  ]
+}

@@ -1,0 +1,49 @@
+/* MyTesla: rings + essentials. Dark by default; light via the theme menu. The rings card is always black. */
+:root{--bg:#050506;--fg:#f5f5f7;--mute:#8e8e93;--card:#121214;--line:rgba(255,255,255,.08);--red:#FA114F;--green:#A6FF00;--cyan:#1EEAEF;--acc:#e82127;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+[data-theme=light]{--bg:#f5f5f7;--fg:#1d1d1f;--mute:#6e6e73;--card:#fff;--line:rgba(0,0,0,.08)}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg)}
+.wrap{max-width:880px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left)) 0 max(16px,env(safe-area-inset-right))}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0 6px;flex-wrap:wrap}
+h1{font-size:28px;font-weight:700;letter-spacing:-.02em;margin:0}h1 span{color:var(--acc)}
+.tb-r{display:flex;gap:8px;align-items:center}
+.updated{color:var(--mute);font-size:13px;margin:2px 0 14px}
+/* theme menu */
+.theme-wrap{position:relative}
+.theme-btn{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:17px;border:1px solid var(--line);background:var(--card);color:var(--fg);font:inherit;font-size:13px;cursor:pointer}
+.theme-btn .ic{display:none}[data-mode=system] .ic-system,[data-mode=light] .ic-light,[data-mode=dark] .ic-dark{display:block}
+.theme-menu{position:absolute;right:0;top:40px;min-width:150px;padding:6px;border-radius:12px;background:var(--card);border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.35);display:none;z-index:5}
+.theme-wrap.open .theme-menu{display:block}
+.tm-item{display:flex;align-items:center;gap:8px;width:100%;padding:8px 10px;border:0;border-radius:8px;background:none;color:var(--fg);font:inherit;font-size:14px;cursor:pointer;text-align:left}
+.tm-item:hover,.tm-item:focus{background:var(--line);outline:none}.tm-item span{flex:1}.tm-item .ck{visibility:hidden}.tm-item[aria-checked=true] .ck{visibility:visible}
+.cta-btn{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-radius:17px;background:var(--acc);color:#fff;text-decoration:none;font-size:13px;font-weight:600}
+/* rings card */
+/* rings: on the page (follow the theme), SVG so they are resolution-independent */
+.rings-wrap{display:flex;align-items:center;gap:32px;padding:8px 0 18px}
+.rings-box{flex:0 0 auto;width:min(280px,46vw);aspect-ratio:1/1}
+#rings{display:block;width:100%;height:100%;overflow:visible}
+.legend{list-style:none;margin:0;padding:0;display:grid;gap:18px;flex:1;min-width:0}
+.legend li{display:grid;grid-template-columns:12px 1fr;column-gap:10px;align-items:center;line-height:1.15}
+.lg-d{width:12px;height:12px;border-radius:50%;grid-row:span 2}
+.lg-l{font-size:15px;font-weight:600;color:var(--fg)}
+.lg-v{font-size:26px;font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums;font-family:"SF Pro Rounded",ui-rounded,-apple-system,system-ui,sans-serif;grid-column:2}
+.lg-v small{font-size:15px;font-weight:600;margin-left:2px;opacity:.85}
+.lg-r .lg-d{background:#FA114F}.lg-g .lg-d{background:#A6FF00}.lg-c .lg-d{background:#00D8FE}
+.lg-r .lg-v{color:#FA114F}.lg-g .lg-v{color:#7ED321}.lg-c .lg-v{color:#00C7E6}
+[data-theme=dark] .lg-g .lg-v{color:#A6FF00}[data-theme=dark] .lg-c .lg-v{color:#00D8FE}
+@media (max-width:560px){.rings-wrap{flex-direction:column;gap:20px}.rings-box{width:min(250px,70vw)}
+  .legend{width:100%;grid-template-columns:repeat(3,1fr);gap:8px}.legend li{grid-template-columns:10px 1fr;column-gap:6px}.lg-d{width:10px;height:10px}.lg-v{font-size:19px}.lg-v small{font-size:12px}.lg-l{font-size:13px}}
+/* fact cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:14px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.card h2{font-size:15px;font-weight:600;color:var(--fg);margin:0 0 4px}
+.big{font-size:34px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;font-family:"SF Pro Rounded",ui-rounded,-apple-system,system-ui,sans-serif;margin:0 0 2px}.big small{font-size:16px;font-weight:600;color:var(--mute);margin-left:4px}
+.sub{color:var(--mute);font-size:13px;margin:0 0 10px}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:7px 0;border-top:1px solid var(--line);font-size:15px}
+.row:first-of-type{border-top:0}.row b{font-weight:600;font-variant-numeric:tabular-nums;text-align:right}.row i{font-style:normal;color:var(--mute);font-weight:400;font-size:13px;margin-left:4px}
+.row.pos b{color:#30d158}.row.neg b{color:#ff453a}.row.tot{font-weight:600}
+.bar{height:8px;border-radius:4px;background:rgba(30,234,239,.18);overflow:hidden;margin:2px 0 8px}.bar i{display:block;height:100%;background:linear-gradient(90deg,#00C3E0,#5BF5F8);border-radius:4px}
+.hist{list-style:none;margin:8px 0 0;padding:0;font-size:13px;color:var(--mute)}.hist li{display:flex;justify-content:space-between;padding:4px 0}.hist li.cur{color:var(--fg)}.hist i{font-style:normal;opacity:.7}
+footer{color:var(--mute);font-size:12px;padding:10px 16px 30px;text-align:center}
+.note{color:var(--mute);font-size:12px;margin:8px 0 0}
