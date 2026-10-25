@@ -3,10 +3,10 @@
  "month": "2026-10",
  "rings": {
   "update": {
-   "fill": 0.0388,
-   "value": 3.9,
+   "fill": 0.0413,
+   "value": 4.1,
    "state": "rolling",
-   "share": 2.8
+   "share": 3.2
   },
   "breakeven": {
    "fill": 0.5136,
@@ -46,7 +46,7 @@
   "next": {
    "build": "2026.38.5.11",
    "fsd": "14.3.13",
-   "share": 2.8
+   "share": 3.2
   }
  },
  "charging": {
@@ -60,14 +60,14 @@
   "month": "2026-10",
   "miles": 245,
   "ev_total": 115.0,
-  "gas_total": 59.12,
+  "gas_total": 59.04,
   "ev_cpm": 0.469,
   "gas_cpm": 0.241,
   "break_even_miles": 477,
   "assumptions": {
    "gas_mpg": 25.0,
-   "gas_price": 6.033,
-   "gas_price_as_of": "2026-10-24"
+   "gas_price": 6.024,
+   "gas_price_as_of": "2026-10-25"
   }
  },
  "expenses": {
