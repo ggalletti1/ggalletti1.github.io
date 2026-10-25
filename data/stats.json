@@ -13,10 +13,9 @@
    "miles": 245,
    "target": 477
   },
-  "efficiency": {
-   "fill": 0.7053,
-   "value": 2.71,
-   "epa": 3.846
+  "plan_value": {
+   "fill": 0.3377,
+   "value": 0.34
   }
  },
  "software": {
@@ -51,23 +50,27 @@
  },
  "charging": {
   "month": "2026-10",
+  "total_kwh": 90.3,
   "home_kwh": 90.3,
-  "home_cost": 115.0,
   "sc_kwh": 0,
-  "sc_cost": 0
+  "other_kwh": 0
  },
  "cost": {
   "month": "2026-10",
   "miles": 245,
-  "ev_total": 115.0,
+  "total": 115.0,
+  "home_plan": 115.0,
+  "sc_cost": 0,
+  "other_cost": 0,
   "gas_total": 59.04,
-  "ev_cpm": 0.469,
-  "gas_cpm": 0.241,
+  "public_only": 38.84,
   "break_even_miles": 477,
   "assumptions": {
    "gas_mpg": 25.0,
    "gas_price": 6.024,
-   "gas_price_as_of": "2026-10-25"
+   "gas_price_as_of": "2026-10-25",
+   "public_rate": 0.43,
+   "public_rate_as_of": "2026-10-25"
   }
  },
  "expenses": {
