@@ -49,7 +49,3 @@ footer{color:var(--mute);font-size:12px;padding:10px 16px 30px;text-align:center
 .note{color:var(--mute);font-size:12px;margin:8px 0 0}
 
 @media (max-width:400px){.cta-btn{padding:0 11px;gap:4px}.tb-r{gap:6px}}
-/* keep box rows and footnotes on one line in narrow desktop columns: scale text to the card width */
-.card{container-type:inline-size}
-.row,.note{white-space:nowrap}
-@container (max-width:300px){.row{font-size:clamp(12.5px,5.9cqi,15px)}.note{font-size:clamp(10.5px,4.7cqi,12px)}}

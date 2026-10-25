@@ -9,7 +9,7 @@ function renderCost(d) {
     row('Supercharger', usd(c.sc_cost || 0, 2)) +
     row('Other', usd(c.other_cost || 0, 2)) +
     row('Same miles in a gas car', usd(c.gas_total, 2)) +
-    row('Same miles at public chargers', usd(c.public_only, 2)) +
+    row('Same miles at chargers', usd(c.public_only, 2)) +
     `<p class="note">Gas ${usd(a.gas_price, 2)}/gal · Chargers ${usd(a.public_rate, 2)}/kWh · California</p>`);
   const e = d.expenses || {};
   $('expenses').innerHTML = card('Other costs',
