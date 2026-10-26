@@ -33,7 +33,7 @@ h1{font-size:clamp(20px,6.2vw,28px);white-space:nowrap;min-width:0;overflow:hidd
 .lg-r .lg-v{color:#FA114F}.lg-g .lg-v{color:#7ED321}.lg-c .lg-v{color:#00C7E6}
 [data-theme=dark] .lg-g .lg-v{color:#A6FF00}[data-theme=dark] .lg-c .lg-v{color:#00D8FE}
 @media (max-width:560px){.rings-wrap{flex-direction:column;gap:20px}.rings-box{width:min(250px,70vw)}
-  .legend{width:100%;grid-template-columns:repeat(3,1fr);gap:8px}.legend li{grid-template-columns:10px 1fr;column-gap:6px}.lg-d{width:10px;height:10px}.lg-v{font-size:19px}.lg-v small{font-size:12px}.lg-l{font-size:13px}}
+  .legend{width:100%;grid-template-columns:repeat(3,auto);justify-content:center;column-gap:clamp(16px,6vw,30px)}.legend li{white-space:nowrap}.legend li{grid-template-columns:10px 1fr;column-gap:6px}.lg-d{width:10px;height:10px}.lg-v{font-size:19px}.lg-v small{font-size:12px}.lg-l{font-size:13px}}
 /* fact cards */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:14px 0}
 .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px}

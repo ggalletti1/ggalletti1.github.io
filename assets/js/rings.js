@@ -1,4 +1,4 @@
-/* rings: Apple Fitness style rings in SVG (outer red = update (full + 'Up to date' when the car has the newest build), middle green = break-even, inner cyan = plan value: public-only cost / this month's total, 1x = full).
+/* rings: Apple Fitness style rings in SVG (outer red = update (full + 'Up to date' when the car has the newest build), middle green = gas break-even, inner cyan = plan value: public-only cost / this month's total, 1x = full).
    Gradient arcs (many small segments, so it works in every browser), rounded caps, a dimmer track that follows the theme,
    and past 100% the ring keeps looping with a shadowed tip. The viewBox is fixed (100x100), so it never stretches. */
 'use strict';
@@ -45,7 +45,7 @@ function renderRings(d) {
   const pct = v => v == null ? '—' : `${num(v, v < 10 ? 1 : 0)}%`;
   const rows = [
     ['r', 'Update odds', u.state === 'up_to_date' ? 'Up to date' : pct(u.value)],
-    ['g', 'Break-even', g.target ? `${num(g.miles)}/${num(g.target)}<small>mi</small>` : '—'],
+    ['g', 'Gas break-even', g.target ? `${num(g.miles)}/${num(g.target)}<small>mi</small>` : '—'],
     ['c', 'Plan value', c.value != null ? `${num(c.value, 1)}x` : '—'],
   ];
   $('legend').innerHTML = rows.map(([k, l, v]) => `<li class="lg-${k}"><i class="lg-d"></i><span class="lg-l">${l}</span><span class="lg-v">${v}</span></li>`).join('');

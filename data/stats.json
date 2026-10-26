@@ -9,9 +9,9 @@
    "share": 17.7
   },
   "breakeven": {
-   "fill": 0.5136,
+   "fill": 0.5126,
    "miles": 245,
-   "target": 477
+   "target": 478
   },
   "plan_value": {
    "fill": 0.3377,
@@ -64,13 +64,13 @@
   "home_plan": 115.0,
   "sc_cost": 0,
   "other_cost": 0,
-  "gas_total": 59.04,
+  "gas_total": 58.99,
   "public_only": 38.84,
-  "break_even_miles": 477,
+  "break_even_miles": 478,
   "assumptions": {
    "gas_mpg": 25.0,
-   "gas_price": 6.024,
-   "gas_price_as_of": "2026-10-25",
+   "gas_price": 6.019,
+   "gas_price_as_of": "2026-10-26",
    "public_rate": 0.43,
    "public_rate_as_of": "2026-10-25"
   }
