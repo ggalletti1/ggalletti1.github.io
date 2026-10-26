@@ -21,6 +21,7 @@
  "software": {
   "current": "2026.38.5.1",
   "current_fsd": "14.3.12",
+  "status": null,
   "history": [
    {
     "version": "2026.38.5.1",
@@ -41,7 +42,8 @@
     "current": false
    }
   ],
-  "pending": null,
+  "mine_share": 44.5,
+  "mine": true,
   "next": {
    "build": "2026.38.5.11",
    "fsd": "14.3.13",
