@@ -3,19 +3,19 @@
  "month": "2026-10",
  "rings": {
   "update": {
-   "fill": 0.209,
-   "value": 20.9,
+   "fill": 0.3117,
+   "value": 31.2,
    "state": "rolling",
-   "share": 17.7
+   "share": 19.6
   },
   "breakeven": {
-   "fill": 0.5126,
-   "miles": 245,
+   "fill": 0.5962,
+   "miles": 285,
    "target": 478
   },
   "plan_value": {
-   "fill": 0.3377,
-   "value": 0.34
+   "fill": 0.428,
+   "value": 0.43
   }
  },
  "software": {
@@ -42,30 +42,30 @@
     "current": false
    }
   ],
-  "mine_share": 41.1,
+  "mine_share": 39.6,
   "mine": true,
   "next": {
    "build": "2026.38.5.11",
    "fsd": "14.3.13",
-   "share": 17.7
+   "share": 19.6
   }
  },
  "charging": {
   "month": "2026-10",
-  "total_kwh": 90.3,
-  "home_kwh": 90.3,
+  "total_kwh": 114.5,
+  "home_kwh": 114.5,
   "sc_kwh": 0,
   "other_kwh": 0
  },
  "cost": {
   "month": "2026-10",
-  "miles": 245,
+  "miles": 285,
   "total": 115.0,
   "home_plan": 115.0,
   "sc_cost": 0,
   "other_cost": 0,
-  "gas_total": 58.99,
-  "public_only": 38.84,
+  "gas_total": 68.62,
+  "public_only": 49.22,
   "break_even_miles": 478,
   "assumptions": {
    "gas_mpg": 25.0,
