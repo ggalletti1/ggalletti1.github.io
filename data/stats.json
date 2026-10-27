@@ -8,9 +8,9 @@
    "state": "learning"
   },
   "breakeven": {
-   "fill": 0.5962,
+   "fill": 0.595,
    "miles": 285,
-   "target": 478
+   "target": 479
   },
   "plan_value": {
    "fill": 0.428,
@@ -46,7 +46,7 @@
   "next": {
    "build": "2026.38.5.11",
    "fsd": "14.3.13",
-   "share": 29.4
+   "share": 29.5
   }
  },
  "charging": {
@@ -63,10 +63,10 @@
   "home_plan": 115.0,
   "sc_cost": 0,
   "other_cost": 0,
-  "gas_total": 68.62,
+  "gas_total": 68.35,
   "public_only": 49.22,
   "assumptions": {
-   "gas_price": 6.019,
+   "gas_price": 5.996,
    "public_rate": 0.43
   }
  },
