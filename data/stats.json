@@ -65,13 +65,9 @@
   "other_cost": 0,
   "gas_total": 68.62,
   "public_only": 49.22,
-  "break_even_miles": 478,
   "assumptions": {
-   "gas_mpg": 25.0,
    "gas_price": 6.019,
-   "gas_price_as_of": "2026-10-26",
-   "public_rate": 0.43,
-   "public_rate_as_of": "2026-10-25"
+   "public_rate": 0.43
   }
  },
  "expenses": {
