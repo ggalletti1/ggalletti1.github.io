@@ -1,5 +1,5 @@
 {
- "last_updated": "2026-10-26",
+ "last_updated": "2026-10-27",
  "month": "2026-10",
  "rings": {
   "update": {
@@ -41,12 +41,12 @@
     "current": false
    }
   ],
-  "mine_share": 37.9,
+  "mine_share": 33.9,
   "mine": true,
   "next": {
    "build": "2026.38.5.11",
    "fsd": "14.3.13",
-   "share": 21.5
+   "share": 29.4
   }
  },
  "charging": {
