@@ -1,6 +1,6 @@
 /* rings: Apple Fitness style rings in SVG (outer red = update (full + 'Up to date' when the car has the newest build; empty + 'Learning' until a verified inclusion sets the anchors), middle green = gas break-even, inner cyan = plan value: public-only cost / this month's total, 1x = full).
    Gradient arcs (many small segments, so it works in every browser), rounded caps, a dimmer track that follows the theme,
-   and past 100% the ring keeps looping with a shadowed tip. The viewBox is fixed (100x100), so it never stretches. */
+   past 100% the ring keeps looping with a shadowed tip, and each ring has a small Apple-style icon at 12 o'clock. The viewBox is fixed (100x100), so it never stretches. */
 'use strict';
 const RINGS = [   // Apple Fitness gradients: [start, end, rgb for the track]
   ['#E20039', '#FF2D7A', '250,17,79'],
@@ -14,6 +14,19 @@ const mix = (a, b, t) => { const A = hex(a), B = hex(b); return `rgb(${A.map((x,
 const pt = (r, a) => [50 + r * Math.cos(a), 50 + r * Math.sin(a)];
 function arc(r, a0, a1) { const [x0, y0] = pt(r, a0), [x1, y1] = pt(r, a1); return `M${x0.toFixed(3)} ${y0.toFixed(3)}A${r} ${r} 0 ${a1 - a0 > Math.PI ? 1 : 0} 1 ${x1.toFixed(3)} ${y1.toFixed(3)}`; }
 function el(tag, attrs) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; }
+// Apple-style glyphs: thin black monoline icons (24x24 grid, stroke 1.35, round caps), upright on each ring's start cap at 12 o'clock,
+// drawn after the arc so they stay on top when a ring is full or loops past 100%; an empty ring (Learning) shows its icon on the track.
+const GLYPHS = [
+  'M12 4.5v11M7 11l5 5 5-5M6 19.5h12',                       // Update odds: software update (download arrow into tray)
+  'M5.5 20V6.5A1.5 1.5 0 0 1 7 5h5A1.5 1.5 0 0 1 13.5 6.5V20M4 20h11M5.5 10.5h8M13.5 12h2a1 1 0 0 1 1 1v3.5a1.25 1.25 0 0 0 2.5 0V9l-2.5-3', // Gas break-even: gas pump
+  'M13.5 3 6 13.5h5.5L10.5 21 18 10.5h-5.5z',               // Plan value: lightning bolt
+];
+function glyph(svg, i, r) {   // ~82% of the cap width
+  const s = W * 0.82 / 24, [x, y] = pt(r, TOP);
+  const g = el('g', {transform: `translate(${(x - 12 * s).toFixed(3)} ${(y - 12 * s).toFixed(3)}) scale(${s.toFixed(4)})`, 'aria-hidden': 'true'});
+  g.appendChild(el('path', {d: GLYPHS[i], fill: 'none', stroke: '#000', 'stroke-width': 1.35, 'stroke-linecap': 'round', 'stroke-linejoin': 'round'}));
+  svg.appendChild(g);
+}
 function drawRings(svg, fills, t) {
   const light = document.documentElement.dataset.theme === 'light';
   while (svg.firstChild) svg.removeChild(svg.firstChild);
@@ -23,7 +36,7 @@ function drawRings(svg, fills, t) {
   fills.forEach((f0, i) => {
     const [a, b, rgb] = RINGS[i], r = 50 - W / 2 - i * (W + GAP), v = Math.max(0, (f0 || 0) * t);
     svg.appendChild(el('circle', {cx: 50, cy: 50, r, fill: 'none', 'stroke-width': W, stroke: `rgba(${rgb},${light ? .16 : .24})`}));
-    if (v <= 0.002) return;
+    if (v <= 0.002) { glyph(svg, i, r); return; }
     const end = TOP + 2 * Math.PI * v, from = v > 1 ? end - 2 * Math.PI : TOP, span = end - from;
     const n = Math.max(2, Math.ceil(span / (Math.PI / 90)));
     for (let k = 0; k < n; k++) {   // gradient along the arc: start colour at the tail, end colour at the tip
@@ -37,6 +50,7 @@ function drawRings(svg, fills, t) {
       svg.appendChild(el('path', {d: arc(r, end - 0.25, end), fill: 'none', 'stroke-width': W, stroke: b}));
     }
     svg.appendChild(el('circle', {cx: x, cy: y, r: W / 2, fill: b}));   // rounded tip
+    glyph(svg, i, r);
   });
 }
 function renderRings(d) {
