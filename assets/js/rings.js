@@ -17,7 +17,7 @@ function el(tag, attrs) { const e = document.createElementNS(NS, tag); for (cons
 // Apple-style glyphs: thin black monoline icons (24x24 grid, stroke 1.35, round caps), upright on each ring's start cap at 12 o'clock,
 // drawn after the arc so they stay on top when a ring is full or loops past 100%; an empty ring (Learning) shows its icon on the track.
 const GLYPHS = [
-  'M12 4.5v11M7 11l5 5 5-5M6 19.5h12',                       // Update odds: software update (download arrow into tray)
+  'M12 6.25v11.5M7 12.75l5 5 5-5M6 17.75h12',                     // Update odds: software update (download arrow whose tip touches the line below)
   'M5.5 20V6.5A1.5 1.5 0 0 1 7 5h5A1.5 1.5 0 0 1 13.5 6.5V20M4 20h11M5.5 10.5h8M13.5 12h2a1 1 0 0 1 1 1v3.5a1.25 1.25 0 0 0 2.5 0V9l-2.5-3', // Gas break-even: gas pump
   'M13.5 3 6 13.5h5.5L10.5 21 18 10.5h-5.5z',               // Plan value: lightning bolt
 ];
