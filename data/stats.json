@@ -3,10 +3,9 @@
  "month": "2026-10",
  "rings": {
   "update": {
-   "fill": 0.435,
-   "value": 43.5,
-   "state": "rolling",
-   "share": 21.5
+   "fill": 0.0,
+   "value": null,
+   "state": "learning"
   },
   "breakeven": {
    "fill": 0.5962,
