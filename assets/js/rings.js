@@ -60,7 +60,7 @@ function renderRings(d) {
   const rows = [
     ['r', 'Update odds', u.state === 'up_to_date' ? 'Up to date' : u.state === 'learning' ? 'Learning' : pct(u.value)],
     ['g', 'Gas break-even', g.target ? `${num(g.miles)}/${num(g.target)}<small>mi</small>` : '—'],
-    ['c', 'Plan value', c.value != null ? `${num(c.value, 1)}x` : '—'],
+    ['c', 'Plan value', c.value != null ? `${num(c.value, 2)}x` : '—'],
   ];
   $('legend').innerHTML = rows.map(([k, l, v]) => `<li class="lg-${k}"><i class="lg-d"></i><span class="lg-l">${l}</span><span class="lg-v">${v}</span></li>`).join('');
   svg.setAttribute('aria-label', rows.map(r => `${r[1]} ${r[2].replace(/<[^>]+>/g, ' ')}`).join(', '));
