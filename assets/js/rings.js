@@ -18,7 +18,7 @@ function el(tag, attrs) { const e = document.createElementNS(NS, tag); for (cons
 // drawn after the arc so they stay on top when a ring is full or loops past 100%; an empty ring (Learning) shows its icon on the track.
 const GLYPHS = [
   'M12 5.725v11.5M7 12.225l5 5 5-5M6 18.225h12',                       // Update odds: software update (download arrow whose tip touches the line below)
-  'M5.5 20V6.5A1.5 1.5 0 0 1 7 5h5A1.5 1.5 0 0 1 13.5 6.5V20M4 20h11M5.5 10.5h8M13.5 12h2a1 1 0 0 1 1 1v3.5a1.25 1.25 0 0 0 2.5 0V9l-2.5-3', // Gas break-even: gas pump
+  'M6 19.5V6A1.5 1.5 0 0 1 7.5 4.5h5A1.5 1.5 0 0 1 14 6V19.5M4.5 19.5h11M6 10h8M14 11.5h2a1 1 0 0 1 1 1v3.5a1.25 1.25 0 0 0 2.5 0V8.5l-2.5-3', // Gas break-even: gas pump
   'M13.5 3 6 13.5h5.5L10.5 21 18 10.5h-5.5z',               // Plan value: lightning bolt
 ];
 function glyph(svg, i, r) {   // ~82% of the cap width
