@@ -13,8 +13,8 @@
    "target": 481
   },
   "plan_value": {
-   "fill": 0.428,
-   "value": 0.43
+   "fill": 0.3554,
+   "value": 0.36
   }
  },
  "software": {
@@ -51,8 +51,8 @@
  },
  "charging": {
   "month": "2026-10",
-  "total_kwh": 114.5,
-  "home_kwh": 114.5,
+  "total_kwh": 95.0,
+  "home_kwh": 95.0,
   "sc_kwh": 0,
   "other_kwh": 0
  },
@@ -64,7 +64,7 @@
   "sc_cost": 0,
   "other_cost": 0,
   "gas_total": 83.83,
-  "public_only": 49.22,
+  "public_only": 40.87,
   "assumptions": {
    "gas_price": 5.971,
    "public_rate": 0.43
