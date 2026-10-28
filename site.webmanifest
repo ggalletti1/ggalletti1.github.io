@@ -1,6 +1,6 @@
 {
-  "name": "Giovanni's Tesla",
-  "short_name": "Giovanni's Tesla",
+  "name": "MyTesla",
+  "short_name": "MyTesla",
   "description": "Everything about my Tesla in three rings: update odds, gas savings and plan value. Updated daily.",
   "start_url": "/",
   "display": "browser",
