@@ -8,7 +8,7 @@
    "state": "learning"
   },
   "breakeven": {
-   "fill": 0.8095,
+   "fill": 0.8104,
    "miles": 391,
    "target": 483
   },
@@ -59,11 +59,12 @@
  "cost": {
   "month": "2026-10",
   "miles": 391,
+  "miles_exact": 391.4,
   "total": 115.0,
   "home_plan": 115.0,
   "sc_cost": 0,
   "other_cost": 0,
-  "gas_total": 93.03,
+  "gas_total": 93.12,
   "public_only": 58.15,
   "assumptions": {
    "gas_price": 5.948,
