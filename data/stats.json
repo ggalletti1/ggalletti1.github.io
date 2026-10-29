@@ -13,8 +13,8 @@
    "target": 481
   },
   "plan_value": {
-   "fill": 0.3554,
-   "value": 0.36
+   "fill": 0.3719,
+   "value": 0.37
   }
  },
  "software": {
@@ -64,10 +64,10 @@
   "sc_cost": 0,
   "other_cost": 0,
   "gas_total": 83.83,
-  "public_only": 40.87,
+  "public_only": 42.77,
   "assumptions": {
    "gas_price": 5.971,
-   "public_rate": 0.43
+   "public_rate": 0.45
   }
  },
  "expenses": {
