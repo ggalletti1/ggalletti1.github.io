@@ -17,7 +17,8 @@ h1{font-size:clamp(20px,6.2vw,28px);white-space:nowrap;min-width:0;overflow:hidd
 .theme-wrap.open .theme-menu{display:block}
 .tm-item{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:9px 10px;border:0;border-radius:8px;background:none;color:var(--fg);font:inherit;font-size:14px;cursor:pointer;text-align:left}
 .tm-item:hover,.tm-item:focus{background:var(--line);outline:none}.tm-item span{flex:1}.tm-item .ck{visibility:hidden}.tm-item[aria-checked=true] .ck{visibility:visible}.tm-item[aria-checked=true]{color:var(--acc);background:var(--line)}.tm-item .tm-ic{width:18px;height:18px}
-.cta-btn{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-radius:17px;background:var(--acc);color:#fff;text-decoration:none;font-size:13px;font-weight:600}
+.cta-btn{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-radius:17px;background:linear-gradient(180deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,.12) 48%,rgba(255,255,255,0) 52%),linear-gradient(180deg,#F3DFA2 0%,#D9B464 45%,#B8913F 100%);border:1px solid rgba(122,92,30,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 1px 3px rgba(90,64,16,.25);color:#2A1E05;text-decoration:none;font-size:13px;font-weight:600;white-space:nowrap}
+.cta-btn:hover{filter:brightness(1.05)}.cta-btn:active{filter:brightness(.95)}
 /* rings card */
 /* rings: on the page (follow the theme), SVG so they are resolution-independent */
 .rings-wrap{display:flex;align-items:center;gap:32px;padding:8px 0 18px}
