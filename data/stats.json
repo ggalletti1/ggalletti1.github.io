@@ -8,9 +8,9 @@
    "state": "learning"
   },
   "breakeven": {
-   "fill": 0.8839,
+   "fill": 0.7615,
    "miles": 429,
-   "target": 485
+   "target": 563
   },
   "plan_value": {
    "fill": 0.5056,
@@ -64,7 +64,7 @@
   "home_plan": 115.0,
   "sc_cost": 0,
   "other_cost": 0,
-  "gas_total": 101.62,
+  "gas_total": 87.6,
   "public_only": 58.15,
   "assumptions": {
    "gas_price": 5.926,
