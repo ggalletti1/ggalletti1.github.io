@@ -6,7 +6,7 @@
 html,body{margin:0;background:var(--bg);color:var(--fg)}
 .wrap{max-width:880px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left)) 0 max(16px,env(safe-area-inset-right))}
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:18px 0 6px;flex-wrap:nowrap;min-width:0}
-h1{font-size:clamp(20px,6.2vw,28px);white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis;font-weight:700;letter-spacing:-.02em;margin:0}h1 span{color:var(--acc)}
+h1{font-size:clamp(20px,6.2vw,28px);white-space:nowrap;min-width:0;overflow:hidden;text-overflow:ellipsis;font-weight:700;letter-spacing:-.02em;margin:0}h1 span{color:#D9B464;background:linear-gradient(180deg,#F3DFA2 0%,#D9B464 50%,#B8913F 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}[data-theme=light] h1 span{color:#9A7630;background-image:linear-gradient(180deg,#D9B464 0%,#B8913F 50%,#8C6A24 100%)}
 .tb-r{display:flex;gap:8px;align-items:center;flex:none}
 .updated{color:var(--mute);font-size:13px;margin:2px 0 14px}
 /* theme menu */
