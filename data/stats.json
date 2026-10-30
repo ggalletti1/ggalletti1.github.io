@@ -8,8 +8,8 @@
    "state": "learning"
   },
   "breakeven": {
-   "fill": 0.807,
-   "miles": 391,
+   "fill": 0.8839,
+   "miles": 429,
    "target": 485
   },
   "plan_value": {
@@ -41,12 +41,12 @@
     "current": false
    }
   ],
-  "mine_share": 21.2,
+  "mine_share": 21.1,
   "mine": true,
   "next": {
    "build": "2026.38.5.11",
    "fsd": "14.3.13",
-   "share": 47.6
+   "share": 47.7
   }
  },
  "charging": {
@@ -58,13 +58,13 @@
  },
  "cost": {
   "month": "2026-10",
-  "miles": 391,
-  "miles_exact": 391.4,
+  "miles": 429,
+  "miles_exact": 428.7,
   "total": 115.0,
   "home_plan": 115.0,
   "sc_cost": 0,
   "other_cost": 0,
-  "gas_total": 92.78,
+  "gas_total": 101.62,
   "public_only": 58.15,
   "assumptions": {
    "gas_price": 5.926,
