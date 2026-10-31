@@ -41,12 +41,12 @@
     "current": false
    }
   ],
-  "mine_share": 20.3,
+  "mine_share": 20.2,
   "mine": true,
   "next": {
    "build": "2026.38.5.11",
    "fsd": "14.3.13",
-   "share": 49.3
+   "share": 49.4
   }
  },
  "charging": {
