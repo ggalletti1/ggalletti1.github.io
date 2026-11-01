@@ -1,5 +1,5 @@
 /* cost: this month's energy total (home plan + Supercharger + Other) vs the same miles in a gas car and the same kWh
-   at the public reference rate (Public only / Total = cyan Plan value ring); plus other Tesla costs */
+   at the public reference rate (Public only / Total = Plan value ring); plus other Tesla costs */
 'use strict';
 function renderCost(d) {
   const c = d.cost || {}, a = c.assumptions || {};
