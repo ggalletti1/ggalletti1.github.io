@@ -1,6 +1,6 @@
 /* rings: three gradient rings in SVG (outer Cybercab gold = update (full + 'Up to date' when the car has the newest build; empty + 'Learning' until a verified inclusion sets the anchors), middle Glacier Blue = gas break-even, inner Ultra Red = plan value: public-only cost / this month's total, 1x = full).
    Gradient arcs (many small segments, so it works in every browser), rounded caps, a dimmer track that follows the theme,
-   past 100% the ring keeps looping with a shadowed tip, and each ring has a small Apple-style icon at 12 o'clock. The viewBox is fixed (100x100), so it never stretches. */
+   past 100% the ring keeps looping and its tip overlaps the start; the leading cap casts a soft shadow forward onto the ring underneath, and each ring has a small Apple-style icon at 12 o'clock. The viewBox is fixed (100x100), so it never stretches. */
 'use strict';
 const RINGS = [   // gradients: [start, end, rgb for the track]
   ['#B8913F', '#F3DFA2', '217,180,100'],   // Update odds: Cybercab gold
@@ -30,24 +30,35 @@ function glyph(svg, i, r) {   // ~82% of the cap width
 function drawRings(svg, fills, t) {
   const light = document.documentElement.dataset.theme === 'light';
   while (svg.firstChild) svg.removeChild(svg.firstChild);
-  const defs = el('defs', {}); const f = el('filter', {id: 'tipsh', x: '-50%', y: '-50%', width: '200%', height: '200%'});
-  f.appendChild(el('feDropShadow', {dx: 0, dy: 0, stdDeviation: 1.1, 'flood-color': '#000', 'flood-opacity': light ? .35 : .6}));
-  defs.appendChild(f); svg.appendChild(defs);
+  const defs = el('defs', {}); svg.appendChild(defs);
+  // Apple-style tip shadow: a soft, blurred dark copy of the cap, pushed forward along the direction of travel and
+  // clipped to the ring's own band, so it falls on the track / the ring underneath (never outside the ring).
+  const f = el('filter', {id: 'tipsh', x: '-100%', y: '-100%', width: '300%', height: '300%'});
+  f.appendChild(el('feGaussianBlur', {stdDeviation: W * 0.14})); defs.appendChild(f);
   fills.forEach((f0, i) => {
     const [a, b, rgb] = RINGS[i], r = 50 - W / 2 - i * (W + GAP), v = Math.max(0, (f0 || 0) * t);
-    svg.appendChild(el('circle', {cx: 50, cy: 50, r, fill: 'none', 'stroke-width': W, stroke: `rgba(${rgb},${light ? .16 : .24})`}));
+    svg.appendChild(el('circle', {cx: 50, cy: 50, r, fill: 'none', 'stroke-width': W, stroke: `rgba(${rgb},${light ? .18 : .26})`}));
     if (v <= 0.002) { glyph(svg, i, r); return; }
     const end = TOP + 2 * Math.PI * v, from = v > 1 ? end - 2 * Math.PI : TOP, span = end - from;
-    const n = Math.max(2, Math.ceil(span / (Math.PI / 90)));
+    const n = Math.max(2, Math.ceil(span / (Math.PI / 120)));
+    const seg = (s0, s1, k) => el('path', {d: arc(r, s0, s1), fill: 'none', 'stroke-width': W, stroke: mix(a, b, k)});
     for (let k = 0; k < n; k++) {   // gradient along the arc: start colour at the tail, end colour at the tip
       const s0 = from + span * k / n, s1 = from + span * (k + 1) / n + (k < n - 1 ? 0.012 : 0);
-      svg.appendChild(el('path', {d: arc(r, s0, s1), fill: 'none', 'stroke-width': W, stroke: mix(a, b, (k + .5) / n)}));
+      svg.appendChild(seg(s0, s1, (k + .5) / n));
     }
-    if (v <= 1) { const [x, y] = pt(r, TOP); svg.appendChild(el('circle', {cx: x, cy: y, r: W / 2, fill: a})); }   // rounded tail
+    if (v <= 1) { const [x, y] = pt(r, from); svg.appendChild(el('circle', {cx: x, cy: y, r: W / 2, fill: a})); }   // rounded tail
     const [x, y] = pt(r, end);
-    if (v > 1) {   // overlap: the tip casts a shadow on the ring underneath
-      const g = el('g', {filter: 'url(#tipsh)'}); g.appendChild(el('circle', {cx: x, cy: y, r: W / 2, fill: b})); svg.appendChild(g);
-      svg.appendChild(el('path', {d: arc(r, end - 0.25, end), fill: 'none', 'stroke-width': W, stroke: b}));
+    // tip shadow (always; strongest when the ring laps itself past 100%, like Apple Activity)
+    const m = el('mask', {id: `band${i}`, maskUnits: 'userSpaceOnUse', x: 0, y: 0, width: 100, height: 100});
+    m.appendChild(el('circle', {cx: 50, cy: 50, r, fill: 'none', stroke: '#fff', 'stroke-width': W})); defs.appendChild(m);
+    const fx = -Math.sin(end), fy = Math.cos(end), push = W * 0.22;   // unit tangent in the direction of travel
+    const op = v > 1 ? (light ? .38 : .7) : (light ? .16 : .35);
+    const g = el('g', {mask: `url(#band${i})`});
+    g.appendChild(el('circle', {cx: x + fx * push, cy: y + fy * push, r: W / 2, fill: '#000', 'fill-opacity': op, filter: 'url(#tipsh)'}));
+    svg.appendChild(g);
+    if (v > 1) {   // overlap: redraw the last stretch so the tip sits above the start of the same ring
+      const L = 0.35, m2 = 6;
+      for (let k = 0; k < m2; k++) svg.appendChild(seg(end - L + L * k / m2, end - L + L * (k + 1) / m2 + (k < m2 - 1 ? 0.012 : 0), 1 - (L / span) * (1 - (k + .5) / m2)));
     }
     svg.appendChild(el('circle', {cx: x, cy: y, r: W / 2, fill: b}));   // rounded tip
     glyph(svg, i, r);
@@ -62,7 +73,7 @@ function renderRings(d) {
     ['g', 'Gas break-even', g.target ? `${num(g.miles)}/${num(g.target)}<small>mi</small>` : '—'],
     ['c', 'Plan value', c.value != null ? `${num(c.value, 2)}x` : '—'],
   ];
-  $('legend').innerHTML = rows.map(([k, l, v]) => `<li class="lg-${k}"><i class="lg-d"></i><span class="lg-l">${l}</span><span class="lg-v">${v}</span></li>`).join('');
+  $('legend').innerHTML = rows.map(([k, l, v]) => `<li class="lg-${k}"><span class="lg-l">${l}</span><span class="lg-v">${v}</span></li>`).join('');
   svg.setAttribute('aria-label', rows.map(r => `${r[1]} ${r[2].replace(/<[^>]+>/g, ' ')}`).join(', '));
   const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   let t0 = null; const dur = 1400;
