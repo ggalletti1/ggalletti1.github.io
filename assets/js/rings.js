@@ -1,6 +1,6 @@
 /* rings: three gradient rings in SVG (outer Cybercab gold = update (full + 'Up to date' when the car has the newest build; empty + 'Learning' until a verified inclusion sets the anchors), middle Glacier Blue = gas break-even, inner Ultra Red = plan value: public-only cost / this month's total, 1x = full).
    Gradient arcs (many small segments, so it works in every browser), rounded caps, a dimmer track that follows the theme,
-   past 100% the ring keeps looping and its tip overlaps the start; the leading half-disc cap covers the start cleanly and casts a soft shadow that fades forward along the ring band, and each ring has a small Apple-style icon at 12 o'clock. The viewBox is fixed (100x100), so it never stretches. */
+   past 100% the ring keeps looping and its tip overlaps the start; the leading cap (one solid end-colour circle) covers the start cleanly and casts a soft shadow that fades forward along the ring band, and each ring has a small Apple-style icon at 12 o'clock. The viewBox is fixed (100x100), so it never stretches. */
 'use strict';
 const RINGS = [   // gradients: [start, end, rgb for the track]
   ['#B8913F', '#F3DFA2', '217,180,100'],   // Update odds: Cybercab gold
@@ -60,13 +60,14 @@ function drawRings(svg, fills, t) {
       sh.appendChild(seg(s0, s1, '#000', {'stroke-opacity': (op * q * q).toFixed(3)}));
     }
     const shg = el('g', {'clip-path': `url(#band${i})`}); shg.appendChild(sh); svg.appendChild(shg);
-    if (v > 1) {   // overlap: redraw the last stretch (same colours as below) so the tip sits above the start of the same ring
-      const Lt = 0.35, m2 = 8;
-      for (let k = 0; k < m2; k++) { const s0 = end - Lt + Lt * k / m2, s1 = end - Lt + Lt * (k + 1) / m2 + 0.012; svg.appendChild(seg(s0, Math.min(s1, end + 0.004), colAt((s0 + s1) / 2))); }
+    if (v > 0.9) {   // at/after a full lap: redraw the last stretch so the tip sits above the start of the same ring;
+      // the part hidden under the cap uses the cap colour exactly, so no edge can show through the cap's rim
+      const Lt = 0.35, m2 = 8, capA = (W / 2) / r;
+      for (let k = 0; k < m2; k++) { const s0 = end - Lt + Lt * k / m2, s1 = Math.min(end - Lt + Lt * (k + 1) / m2 + 0.012, end);
+        svg.appendChild(seg(s0, s1, s0 >= end - capA ? b : colAt((s0 + s1) / 2))); }
     }
-    // rounded tip: only the forward half-disc, so no cap outline is ever drawn over the ring behind it
-    const [ox, oy] = pt(ro, end), [ix, iy] = pt(ri, end);
-    svg.appendChild(el('path', {d: `M${ox.toFixed(3)} ${oy.toFixed(3)}A${W / 2} ${W / 2} 0 0 1 ${ix.toFixed(3)} ${iy.toFixed(3)}Z`, fill: colAt(end - span / n / 2)}));
+    const [x, y] = pt(r, end);
+    svg.appendChild(el('circle', {cx: x, cy: y, r: W / 2, fill: b}));   // rounded tip: one solid circle in the end colour, on top of everything
     glyph(svg, i, r);
   });
 }
