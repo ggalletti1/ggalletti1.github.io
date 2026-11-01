@@ -3,9 +3,9 @@
  "month": "2026-11",
  "rings": {
   "update": {
-   "fill": 0.0,
+   "fill": 1.0,
    "value": null,
-   "state": "learning"
+   "state": "up_to_date"
   },
   "breakeven": {
    "fill": 0.0,
@@ -18,9 +18,9 @@
   }
  },
  "software": {
-  "current": "2026.38.5.1",
-  "current_fsd": "14.3.12",
-  "status": null,
+  "current": "2026.38.5.11",
+  "current_fsd": "14.3.13",
+  "status": "waiting to install",
   "history": [
    {
     "version": "2026.38.5.1",
@@ -41,13 +41,9 @@
     "current": false
    }
   ],
-  "mine_share": 20.0,
+  "mine_share": 49.8,
   "mine": true,
-  "next": {
-   "build": "2026.38.5.11",
-   "fsd": "14.3.13",
-   "share": 49.8
-  }
+  "next": null
  },
  "charging": {
   "month": "2026-11",
