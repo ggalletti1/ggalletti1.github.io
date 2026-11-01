@@ -9,7 +9,7 @@ function renderSoftware(d) {   // Next update row ('nx'): build, with FSD on a 2
     row('Rolled out to', `${num(n.share, 1)}% of cars`);
   else if (s.mine) h += row('Next update', 'Not available') + (s.mine_share != null ? row('Rolled out to', `${num(s.mine_share, 1)}% of cars`) : '');
   else h += row('Next update', 'You’re up to date');
-  const past = (s.history || []).filter(b => !b.current).slice(0, 2);   // the 2 most recent builds before the installed one
+  const past = (s.history || []).filter(b => s.status || !b.current).slice(0, 2);   // 2 most recent past builds; while a build is pending the installed one is already past
   if (past.length) h += '<ol class="hist">' + past.map(b => `<li><span>${esc(b.version)}${b.fsd ? ` <i>FSD ${esc(b.fsd)}</i>` : ''}</span><time>${b.date ? day(b.date) : ''}</time></li>`).join('') + '</ol>';
   $('software').innerHTML = card('Software', h);
 }
