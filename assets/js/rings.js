@@ -1,11 +1,11 @@
-/* rings: Apple Fitness style rings in SVG (outer red = update (full + 'Up to date' when the car has the newest build; empty + 'Learning' until a verified inclusion sets the anchors), middle green = gas break-even, inner cyan = plan value: public-only cost / this month's total, 1x = full).
+/* rings: three gradient rings in SVG (outer Cybercab gold = update (full + 'Up to date' when the car has the newest build; empty + 'Learning' until a verified inclusion sets the anchors), middle Glacier Blue = gas break-even, inner Ultra Red = plan value: public-only cost / this month's total, 1x = full).
    Gradient arcs (many small segments, so it works in every browser), rounded caps, a dimmer track that follows the theme,
    past 100% the ring keeps looping with a shadowed tip, and each ring has a small Apple-style icon at 12 o'clock. The viewBox is fixed (100x100), so it never stretches. */
 'use strict';
-const RINGS = [   // Apple Fitness gradients: [start, end, rgb for the track]
-  ['#E20039', '#FF2D7A', '250,17,79'],
-  ['#5CD600', '#B5FF00', '146,232,42'],
-  ['#00B5E5', '#2BF1F6', '0,216,254'],
+const RINGS = [   // gradients: [start, end, rgb for the track]
+  ['#B8913F', '#F3DFA2', '217,180,100'],   // Update odds: Cybercab gold
+  ['#5FA8D9', '#B3E0FF', '127,190,232'],   // Gas break-even: Tesla Glacier Blue
+  ['#C8102E', '#FF3B4A', '232,33,50'],     // Plan value: Tesla Ultra Red
 ];
 const NS = 'http://www.w3.org/2000/svg';
 const W = 10.6, GAP = 1.3, TOP = -Math.PI / 2;

@@ -1,5 +1,5 @@
 /* MyTesla: rings + essentials. Dark by default; light via the theme menu. The rings card is always black. */
-:root{--bg:#050506;--fg:#f5f5f7;--mute:#8e8e93;--card:#121214;--line:rgba(255,255,255,.08);--red:#FA114F;--green:#A6FF00;--cyan:#1EEAEF;--acc:#e82127;
+:root{--bg:#050506;--fg:#f5f5f7;--mute:#8e8e93;--card:#121214;--line:rgba(255,255,255,.08);--acc:#e82127;
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 [data-theme=light]{--bg:#f5f5f7;--fg:#1d1d1f;--mute:#6e6e73;--card:#fff;--line:rgba(0,0,0,.08)}
 *{box-sizing:border-box}
@@ -30,9 +30,9 @@ h1{font-size:clamp(20px,6.2vw,28px);white-space:nowrap;min-width:0;overflow:hidd
 .lg-l{font-size:15px;font-weight:600;color:var(--fg)}
 .lg-v{font-size:26px;font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums;font-family:"SF Pro Rounded",ui-rounded,-apple-system,system-ui,sans-serif;grid-column:2}
 .lg-v small{font-size:15px;font-weight:600;margin-left:2px;opacity:.85}
-.lg-r .lg-d{background:#FA114F}.lg-g .lg-d{background:#A6FF00}.lg-c .lg-d{background:#00D8FE}
-.lg-r .lg-v{color:#FA114F}.lg-g .lg-v{color:#7ED321}.lg-c .lg-v{color:#00C7E6}
-[data-theme=dark] .lg-g .lg-v{color:#A6FF00}[data-theme=dark] .lg-c .lg-v{color:#00D8FE}
+.lg-r .lg-d{background:linear-gradient(180deg,#F3DFA2,#B8913F)}.lg-g .lg-d{background:#8CCBF2}.lg-c .lg-d{background:#E8212F}
+.lg-r .lg-v{color:#9A7630}.lg-g .lg-v{color:#2F86C2}.lg-c .lg-v{color:#C8102E}
+[data-theme=dark] .lg-r .lg-v{color:#E6C77E}[data-theme=dark] .lg-g .lg-v{color:#A3D8FA}[data-theme=dark] .lg-c .lg-v{color:#FF4A55}
 @media (max-width:560px){.rings-wrap{flex-direction:column;gap:20px}.rings-box{width:min(250px,70vw)}
   .legend{width:100%;grid-template-columns:repeat(3,auto);justify-content:center;column-gap:clamp(16px,6vw,30px)}.legend li{white-space:nowrap}.legend li{grid-template-columns:10px 1fr;column-gap:6px}.lg-d{width:10px;height:10px}.lg-v{font-size:19px}.lg-v small{font-size:12px}.lg-l{font-size:13px}}
 /* fact cards */
