@@ -1,6 +1,6 @@
 /* rings: three gradient rings in SVG (outer Cybercab gold = update (full + 'Up to date' when the car has the newest build; empty + 'Learning' until a verified inclusion sets the anchors), middle Quicksilver = gas break-even, inner Ultra Red = plan value: public-only cost / this month's total, 1x = full).
-   Smooth conic gradient per ring (canvas createConicGradient, fine-wedge fallback) masked to the arc; one lap = start colour -> end colour, rounded caps, a dimmer track that follows the theme,
-   past 100% the ring keeps looping and its tip overlaps the start; the leading cap (one solid end-colour circle) covers the start cleanly and casts a soft shadow that fades forward along the ring band, and each ring has a small Apple-style icon at 12 o'clock. The viewBox is fixed (100x100), so it never stretches. */
+   Smooth conic gradient per ring (canvas createConicGradient, fine-wedge fallback) masked to the arc; one lap = start colour -> end colour, start cap = start colour, leading cap = one full circle in the tip colour, a dimmer track that follows the theme;
+   past 100% the ring keeps looping and its tip overlaps the start; above 90% fill the tip casts a soft shadow that fades forward along the ring band, and each ring has a small Apple-style icon at 12 o'clock. The viewBox is fixed (100x100), so it never stretches. */
 'use strict';
 const RINGS = [   // gradients: [start, end, rgb for the track]
   ['#B8913F', '#F3DFA2', '217,180,100'],   // Update odds: Cybercab gold
@@ -59,10 +59,10 @@ function drawRings(svg, fills, t) {
     m.appendChild(v >= 1 ? el('circle', {cx: 50, cy: 50, r, fill: 'none', stroke: '#fff', 'stroke-width': W})
                          : el('path', {d: arc(r, from, end), fill: 'none', stroke: '#fff', 'stroke-width': W}));
     defs.appendChild(m);
-    const img = el('image', {x: 0, y: 0, width: 100, height: 100, preserveAspectRatio: 'none', mask: `url(#body${u}${i})`});
+    const img = el('image', {x: 0, y: 0, width: 100, height: 100, preserveAspectRatio: 'none'});
     img.setAttribute('href', conic(i, a, b));
     const rot = el('g', {transform: `rotate(${(from * 180 / Math.PI).toFixed(3)} 50 50)`}); rot.appendChild(img);
-    const body = el('g', {mask: `url(#body${u}${i})`}); img.removeAttribute('mask'); body.appendChild(rot); svg.appendChild(body);
+    const body = el('g', {mask: `url(#body${u}${i})`}); body.appendChild(rot); svg.appendChild(body);
     if (v < 1) { const [x, y] = pt(r, from); svg.appendChild(el('circle', {cx: x, cy: y, r: W / 2, fill: a})); }   // rounded start, exactly the start colour
     if (v > 0.9) {   // tip shadow only when the tip laps or sits close to the start (Apple Activity)
       const cp = el('clipPath', {id: `band${u}${i}`});
