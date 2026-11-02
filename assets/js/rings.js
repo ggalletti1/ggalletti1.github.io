@@ -1,10 +1,10 @@
-/* rings: three gradient rings in SVG (outer Cybercab gold = update (full + 'Up to date' when the car has the newest build; empty + 'Learning' until a verified inclusion sets the anchors), middle Glacier Blue = gas break-even, inner Ultra Red = plan value: public-only cost / this month's total, 1x = full).
+/* rings: three gradient rings in SVG (outer Cybercab gold = update (full + 'Up to date' when the car has the newest build; empty + 'Learning' until a verified inclusion sets the anchors), middle Quicksilver = gas break-even, inner Ultra Red = plan value: public-only cost / this month's total, 1x = full).
    Gradient arcs (many small segments, so it works in every browser), rounded caps, a dimmer track that follows the theme,
    past 100% the ring keeps looping and its tip overlaps the start; the leading cap (one solid end-colour circle) covers the start cleanly and casts a soft shadow that fades forward along the ring band, and each ring has a small Apple-style icon at 12 o'clock. The viewBox is fixed (100x100), so it never stretches. */
 'use strict';
 const RINGS = [   // gradients: [start, end, rgb for the track]
   ['#B8913F', '#F3DFA2', '217,180,100'],   // Update odds: Cybercab gold
-  ['#5FA8D9', '#B3E0FF', '127,190,232'],   // Gas break-even: Tesla Glacier Blue
+  ['#8E9196', '#E4E6E9', '192,195,199'],   // Gas break-even: Tesla Quicksilver
   ['#C8102E', '#FF3B4A', '232,33,50'],     // Plan value: Tesla Ultra Red
 ];
 const NS = 'http://www.w3.org/2000/svg';
