@@ -1,10 +1,10 @@
 /* rings: three gradient rings in SVG (outer Cybercab gold = update (full + 'Up to date' when the car has the newest build; empty + 'Learning' until a verified inclusion sets the anchors), middle Quicksilver = gas break-even, inner Ultra Red = plan value: public-only cost / this month's total, 1x = full).
-   Gradient arcs (many small segments, so it works in every browser), rounded caps, a dimmer track that follows the theme,
+   Smooth conic gradient per ring (canvas createConicGradient, fine-wedge fallback) masked to the arc; one lap = start colour -> end colour, rounded caps, a dimmer track that follows the theme,
    past 100% the ring keeps looping and its tip overlaps the start; the leading cap (one solid end-colour circle) covers the start cleanly and casts a soft shadow that fades forward along the ring band, and each ring has a small Apple-style icon at 12 o'clock. The viewBox is fixed (100x100), so it never stretches. */
 'use strict';
 const RINGS = [   // gradients: [start, end, rgb for the track]
   ['#B8913F', '#F3DFA2', '217,180,100'],   // Update odds: Cybercab gold
-  ['#8E9196', '#E4E6E9', '192,195,199'],   // Gas break-even: Tesla Quicksilver
+  ['#9EA2A8', '#DCDFE3', '192,195,199'],   // Gas break-even: Tesla Quicksilver
   ['#C8102E', '#FF3B4A', '232,33,50'],     // Plan value: Tesla Ultra Red
 ];
 const NS = 'http://www.w3.org/2000/svg';
@@ -27,47 +27,56 @@ function glyph(svg, i, r) {   // ~82% of the cap width
   g.appendChild(el('path', {d: GLYPHS[i], fill: 'none', stroke: '#000', 'stroke-width': 1.0, 'stroke-linecap': 'round', 'stroke-linejoin': 'round'}));
   svg.appendChild(g);
 }
+const CONIC = {};
+function conic(i, a, b) {   // 0 deg = 3 o'clock, clockwise (same as SVG); rotated into place with a transform; cached per ring
+  if (CONIC[i]) return CONIC[i];
+  const c = document.createElement('canvas'); c.width = c.height = 512; const x = c.getContext('2d');
+  if (x.createConicGradient) { const g = x.createConicGradient(0, 256, 256); g.addColorStop(0, a); g.addColorStop(1, b); x.fillStyle = g; x.fillRect(0, 0, 512, 512); }
+  else for (let k = 0; k < 720; k++) {   // fallback: fine wedges, slightly overlapping
+    x.fillStyle = mix(a, b, (k + .5) / 720); x.beginPath(); x.moveTo(256, 256);
+    x.arc(256, 256, 400, 2 * Math.PI * k / 720, 2 * Math.PI * (k + 1.6) / 720); x.closePath(); x.fill(); }
+  return (CONIC[i] = c.toDataURL());
+}
+let UID = 0;
 function drawRings(svg, fills, t) {
+  const u = svg.dataset.uid || (svg.dataset.uid = 'r' + (++UID));   // unique ids per svg
   const light = document.documentElement.dataset.theme === 'light';
   while (svg.firstChild) svg.removeChild(svg.firstChild);
   const defs = el('defs', {}); svg.appendChild(defs);
   // Apple-style tip shadow: a dark arc cast forward from the leading cap, fading smoothly along the ring, lightly blurred
   // (filter region = the whole viewBox, so it is never cut) and clipped to the ring's own curved band.
-  const f = el('filter', {id: 'tipsh', filterUnits: 'userSpaceOnUse', x: 0, y: 0, width: 100, height: 100});
+  const f = el('filter', {id: `tipsh${u}`, filterUnits: 'userSpaceOnUse', x: 0, y: 0, width: 100, height: 100});
   f.appendChild(el('feGaussianBlur', {stdDeviation: W * 0.12})); defs.appendChild(f);
   fills.forEach((f0, i) => {
     const [a, b, rgb] = RINGS[i], r = 50 - W / 2 - i * (W + GAP), v = Math.max(0, (f0 || 0) * t);
     svg.appendChild(el('circle', {cx: 50, cy: 50, r, fill: 'none', 'stroke-width': W, stroke: `rgba(${rgb},${light ? .18 : .26})`}));
     if (v <= 0.002) { glyph(svg, i, r); return; }
-    const end = TOP + 2 * Math.PI * v, from = v > 1 ? end - 2 * Math.PI : TOP, span = end - from;
-    const n = Math.max(2, Math.ceil(span / (Math.PI / 120)));
-    const colAt = ang => mix(a, b, Math.min(1, Math.max(0, (ang - from) / span)));   // gradient colour at an angle
-    const seg = (s0, s1, c, extra = {}) => el('path', {d: arc(r, s0, s1), fill: 'none', 'stroke-width': W, stroke: c, ...extra});
-    for (let k = 0; k < n; k++) {   // gradient along the arc: start colour at the tail, end colour at the tip
-      const s0 = from + span * k / n, s1 = from + span * (k + 1) / n + (k < n - 1 ? 0.012 : 0);
-      svg.appendChild(seg(s0, s1, colAt((s0 + s1) / 2)));
-    }
-    if (v <= 1) { const [x, y] = pt(r, from); svg.appendChild(el('circle', {cx: x, cy: y, r: W / 2, fill: a})); }   // rounded tail
-    // tip shadow (always; stronger when the ring laps itself past 100%, like Apple Activity)
-    const cp = el('clipPath', {id: `band${i}`});
+    const end = TOP + 2 * Math.PI * v, from = v > 1 ? end - 2 * Math.PI : TOP;
+    const colAt = ang => mix(a, b, Math.min(1, Math.max(0, (ang - from) / (2 * Math.PI))));   // one lap = start -> end colour
     const ro = r + W / 2, ri = r - W / 2;
-    cp.appendChild(el('path', {'clip-rule': 'evenodd', d: `M${50 + ro} 50A${ro} ${ro} 0 1 0 ${50 - ro} 50A${ro} ${ro} 0 1 0 ${50 + ro} 50ZM${50 + ri} 50A${ri} ${ri} 0 1 0 ${50 - ri} 50A${ri} ${ri} 0 1 0 ${50 + ri} 50Z`}));
-    defs.appendChild(cp);
-    const op = v > 1 ? (light ? .26 : .6) : (light ? .12 : .32), L = Math.min(0.75, W * 2.6 / r), sn = 24;
-    const sh = el('g', {filter: 'url(#tipsh)'});
-    for (let k = 0; k < sn; k++) {   // smooth fall-off: dense at the cap, fading to nothing
-      const s0 = end + L * k / sn, s1 = end + L * (k + 1) / sn + 0.01, q = 1 - (k + .5) / sn;
-      sh.appendChild(seg(s0, s1, '#000', {'stroke-opacity': (op * q * q).toFixed(3)}));
-    }
-    const shg = el('g', {'clip-path': `url(#band${i})`}); shg.appendChild(sh); svg.appendChild(shg);
-    if (v > 0.9) {   // at/after a full lap: redraw the last stretch so the tip sits above the start of the same ring;
-      // the part hidden under the cap uses the cap colour exactly, so no edge can show through the cap's rim
-      const Lt = 0.35, m2 = 8, capA = (W / 2) / r;
-      for (let k = 0; k < m2; k++) { const s0 = end - Lt + Lt * k / m2, s1 = Math.min(end - Lt + Lt * (k + 1) / m2 + 0.012, end);
-        svg.appendChild(seg(s0, s1, s0 >= end - capA ? b : colAt((s0 + s1) / 2))); }
+    // body: one smooth conic gradient (canvas, start colour at `from`, end colour a full lap later), masked to the arc
+    const m = el('mask', {id: `body${u}${i}`, maskUnits: 'userSpaceOnUse', x: 0, y: 0, width: 100, height: 100});
+    m.appendChild(v >= 1 ? el('circle', {cx: 50, cy: 50, r, fill: 'none', stroke: '#fff', 'stroke-width': W})
+                         : el('path', {d: arc(r, from, end), fill: 'none', stroke: '#fff', 'stroke-width': W}));
+    defs.appendChild(m);
+    const img = el('image', {x: 0, y: 0, width: 100, height: 100, preserveAspectRatio: 'none', mask: `url(#body${u}${i})`});
+    img.setAttribute('href', conic(i, a, b));
+    const rot = el('g', {transform: `rotate(${(from * 180 / Math.PI).toFixed(3)} 50 50)`}); rot.appendChild(img);
+    const body = el('g', {mask: `url(#body${u}${i})`}); img.removeAttribute('mask'); body.appendChild(rot); svg.appendChild(body);
+    if (v < 1) { const [x, y] = pt(r, from); svg.appendChild(el('circle', {cx: x, cy: y, r: W / 2, fill: a})); }   // rounded start, exactly the start colour
+    if (v > 0.9) {   // tip shadow only when the tip laps or sits close to the start (Apple Activity)
+      const cp = el('clipPath', {id: `band${u}${i}`});
+      cp.appendChild(el('path', {'clip-rule': 'evenodd', d: `M${50 + ro} 50A${ro} ${ro} 0 1 0 ${50 - ro} 50A${ro} ${ro} 0 1 0 ${50 + ro} 50ZM${50 + ri} 50A${ri} ${ri} 0 1 0 ${50 - ri} 50A${ri} ${ri} 0 1 0 ${50 + ri} 50Z`}));
+      defs.appendChild(cp);
+      const op = light ? .26 : .55, L = Math.min(0.75, W * 2.6 / r), sn = 24, sh = el('g', {filter: `url(#tipsh${u})`});
+      for (let k = 0; k < sn; k++) {   // smooth fall-off: dense at the cap, fading to nothing
+        const q = 1 - (k + .5) / sn;
+        sh.appendChild(el('path', {d: arc(r, end + L * k / sn, end + L * (k + 1) / sn + 0.01), fill: 'none', 'stroke-width': W, stroke: '#000', 'stroke-opacity': (op * q * q).toFixed(3)}));
+      }
+      const shg = el('g', {'clip-path': `url(#band${u}${i})`}); shg.appendChild(sh); svg.appendChild(shg);
     }
     const [x, y] = pt(r, end);
-    svg.appendChild(el('circle', {cx: x, cy: y, r: W / 2, fill: b}));   // rounded tip: one solid circle in the end colour, on top of everything
+    svg.appendChild(el('circle', {cx: x, cy: y, r: W / 2, fill: colAt(end)}));   // leading cap: one full circle in the colour at the tip
     glyph(svg, i, r);
   });
 }
