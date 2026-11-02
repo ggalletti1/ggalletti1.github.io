@@ -20,13 +20,19 @@
  "software": {
   "current": "2026.38.5.11",
   "current_fsd": "14.3.13",
-  "status": "waiting to install",
+  "status": null,
   "history": [
+   {
+    "version": "2026.38.5.11",
+    "fsd": "14.3.13",
+    "date": "2026-11-02",
+    "current": true
+   },
    {
     "version": "2026.38.5.1",
     "fsd": "14.3.12",
     "date": "2026-10-19",
-    "current": true
+    "current": false
    },
    {
     "version": "2026.27.11",
