@@ -1,5 +1,5 @@
 {
- "last_updated": "2026-11-03",
+ "last_updated": "2026-11-04",
  "month": "2026-11",
  "rings": {
   "update": {
@@ -8,9 +8,9 @@
    "state": "up_to_date"
   },
   "breakeven": {
-   "fill": 0.1027,
+   "fill": 0.1021,
    "miles": 58,
-   "target": 566
+   "target": 569
   },
   "plan_value": {
    "fill": 0.121,
@@ -47,7 +47,7 @@
     "current": false
    }
   ],
-  "mine_share": 50.7,
+  "mine_share": 50.8,
   "mine": true,
   "next": null
  },
@@ -66,10 +66,10 @@
   "home_plan": 115.0,
   "sc_cost": 0,
   "other_cost": 0,
-  "gas_total": 11.8,
+  "gas_total": 11.75,
   "public_only": 13.91,
   "assumptions": {
-   "gas_price": 5.889,
+   "gas_price": 5.866,
    "public_rate": 0.45
   }
  },
