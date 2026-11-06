@@ -3,14 +3,13 @@
  "month": "2026-11",
  "rings": {
   "update": {
-   "fill": 0.0161,
-   "value": 1.6,
-   "state": "rolling",
-   "share": 7.1
+   "fill": 1.0,
+   "value": null,
+   "state": "up_to_date"
   },
   "breakeven": {
-   "fill": 0.2065,
-   "miles": 118,
+   "fill": 0.2361,
+   "miles": 135,
    "target": 571
   },
   "plan_value": {
@@ -19,15 +18,21 @@
   }
  },
  "software": {
-  "current": "2026.38.5.11",
+  "current": "2026.38.5.12",
   "current_fsd": "14.3.13",
   "status": null,
   "history": [
    {
+    "version": "2026.38.5.12",
+    "fsd": "14.3.13",
+    "date": "2026-11-05",
+    "current": true
+   },
+   {
     "version": "2026.38.5.11",
     "fsd": "14.3.13",
     "date": "2026-11-02",
-    "current": true
+    "current": false
    },
    {
     "version": "2026.38.5.1",
@@ -48,13 +53,9 @@
     "current": false
    }
   ],
-  "mine_share": 47.4,
+  "mine_share": 18.3,
   "mine": true,
-  "next": {
-   "build": "2026.38.5.12",
-   "fsd": "14.3.13",
-   "share": 7.1
-  }
+  "next": null
  },
  "charging": {
   "month": "2026-11",
@@ -65,13 +66,13 @@
  },
  "cost": {
   "month": "2026-11",
-  "miles": 118,
-  "miles_exact": 117.9,
+  "miles": 135,
+  "miles_exact": 134.8,
   "total": 115.0,
   "home_plan": 115.0,
   "sc_cost": 0,
   "other_cost": 0,
-  "gas_total": 23.74,
+  "gas_total": 27.15,
   "public_only": 13.91,
   "assumptions": {
    "gas_price": 5.84,
