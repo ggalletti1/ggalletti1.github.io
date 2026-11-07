@@ -19,7 +19,7 @@ self.addEventListener('push', event => {
   const title = TITLES.has(message.title) ? message.title : eventTitle(id);
   event.waitUntil(self.registration.showNotification(title, {
     body: typeof message.body === 'string' ? message.body.slice(0, 240) : 'Your Tesla rings have an update.',
-    icon: '/assets/icon-ecg-192.png', badge: '/assets/icon-ecg-192.png',
+    icon: '/assets/icon-192.png', badge: '/assets/icon-192.png',
     tag: typeof message.id === 'string' ? message.id.slice(0, 140) : 'mytesla-update',
     renotify: false, data: {url: '/'}
   }));

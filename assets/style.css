@@ -48,3 +48,15 @@ footer{color:var(--mute);font-size:12px;padding:10px 16px 30px;text-align:center
 .note{color:var(--mute);font-size:12px;margin:8px 0 0}
 
 @media (max-width:400px){.cta-btn{padding:0 11px;gap:4px}.tb-r{gap:6px}}
+
+/* Quiet, opt-in notification setup; no permission prompt on page load. */
+[hidden]{display:none!important}
+.push-controls{margin:8px auto 18px;max-width:420px}
+.push-btn,.push-link{font:inherit;font-size:12px;cursor:pointer}
+.push-btn{border:1px solid var(--line);border-radius:18px;background:var(--card);color:var(--fg);padding:9px 14px;min-height:36px}
+.push-btn:hover{background:var(--line)}.push-btn:disabled{opacity:.5;cursor:wait}
+.push-link{border:0;background:none;color:var(--mute);padding:9px 10px;text-decoration:underline;text-underline-offset:3px}
+.push-btn:focus-visible,.push-link:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.push-pair{margin-top:12px;padding:14px;border:1px solid var(--line);border-radius:16px;background:var(--card);text-align:left}
+.push-pair label{display:block;color:var(--fg);font-weight:600;margin-bottom:8px}
+.push-pair textarea{width:100%;resize:vertical;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);padding:8px;font:11px ui-monospace,monospace;word-break:break-all}
