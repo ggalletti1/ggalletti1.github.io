@@ -53,7 +53,7 @@
     "current": false
    }
   ],
-  "mine_share": 29.4,
+  "mine_share": 30.9,
   "mine": true,
   "next": null
  },
@@ -80,7 +80,12 @@
   }
  },
  "expenses": {
-  "total": 0,
-  "by_category": []
+  "total": 172.86,
+  "by_category": [
+   {
+    "category": "insurance",
+    "total": 172.86
+   }
+  ]
  }
 }
