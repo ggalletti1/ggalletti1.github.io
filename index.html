@@ -8,15 +8,15 @@
 <meta name="robots" content="noindex">
 <meta name="description" content="Everything about my Tesla in three rings: update odds, gas savings and plan value. Updated daily.">
 <title>MyTesla</title>
-<link rel="icon" href="favicon.ico?v=ae0a9e6cf4" sizes="16x16 32x32 48x48">
-<link rel="icon" href="assets/icon-32.png?v=ce8975d16d" type="image/png" sizes="32x32">
-<link rel="icon" href="assets/icon.svg?v=7e483f612b" type="image/svg+xml" sizes="any">
-<link rel="apple-touch-icon" href="assets/touch-icon-180.png?v=1860befc85" sizes="180x180">
-<link rel="apple-touch-icon" href="assets/touch-icon-167.png?v=c87702ba00" sizes="167x167">
-<link rel="apple-touch-icon" href="assets/touch-icon-152.png?v=e21e76531f" sizes="152x152">
-<link rel="apple-touch-icon" href="assets/touch-icon-120.png?v=350e2f176d" sizes="120x120">
+<link rel="icon" href="favicon.ico?v=9c14b0f9a2" sizes="16x16 32x32 48x48">
+<link rel="icon" href="assets/icon-32.png?v=05fc0893bf" type="image/png" sizes="32x32">
+<link rel="icon" href="assets/icon.svg?v=2bc5793ec3" type="image/svg+xml" sizes="any">
+<link rel="apple-touch-icon" href="assets/touch-icon-180.png?v=90409cc8c6" sizes="180x180">
+<link rel="apple-touch-icon" href="assets/touch-icon-167.png?v=cb49627812" sizes="167x167">
+<link rel="apple-touch-icon" href="assets/touch-icon-152.png?v=fde4f9e70a" sizes="152x152">
+<link rel="apple-touch-icon" href="assets/touch-icon-120.png?v=10475efc80" sizes="120x120">
 <link rel="mask-icon" href="safari-pinned-tab.svg?v=009a2604a4" color="#e82127">
-<link rel="manifest" href="site.webmanifest?v=a8c11947b1">
+<link rel="manifest" href="site.webmanifest?v=5af7907d30">
 <meta name="apple-mobile-web-app-title" content="MyTesla">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -26,16 +26,16 @@
 <meta property="og:title" content="MyTesla">
 <meta property="og:description" content="Everything about my Tesla in three rings: update odds, gas savings and plan value. Updated daily.">
 <meta property="og:url" content="https://ggalletti1.github.io/">
-<meta property="og:image" content="https://ggalletti1.github.io/assets/og.png?v=aef200e745">
+<meta property="og:image" content="https://ggalletti1.github.io/assets/og.png?v=dcd8c1906b">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="MyTesla: three rings on a dark background">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="MyTesla">
 <meta name="twitter:description" content="Everything about my Tesla in three rings: update odds, gas savings and plan value. Updated daily.">
-<meta name="twitter:image" content="https://ggalletti1.github.io/assets/og.png?v=aef200e745">
+<meta name="twitter:image" content="https://ggalletti1.github.io/assets/og.png?v=dcd8c1906b">
 <script>/* set theme before first paint to avoid a flash */(function(){var d=document.documentElement,m='system';try{var s=localStorage.getItem('theme');if(s==='light'||s==='dark')m=s;}catch(e){}var t=m==='system'?(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'):m;d.setAttribute('data-mode',m);d.setAttribute('data-theme',t);d.style.colorScheme=t;})();</script>
-<link rel="stylesheet" href="assets/style.css?v=2fd59911be">
+<link rel="stylesheet" href="assets/style.css?v=8936a7b640">
 </head>
 <body>
 <main class="wrap">
@@ -71,6 +71,17 @@
   </section>
 </main>
 <footer class="wrap">
+  <div class="push-controls">
+    <button class="push-btn" id="push-enable" type="button" hidden>Enable notifications</button>
+    <button class="push-link" id="push-setup" type="button" hidden>Notification setup</button>
+    <p class="note" id="push-status" role="status" aria-live="polite"></p>
+    <div class="push-pair" id="push-pair" hidden>
+      <label for="push-code">Private pairing code</label>
+      <textarea id="push-code" readonly rows="3" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="push-status"></textarea>
+      <div><button class="push-btn" id="push-copy" type="button">Copy code</button>
+      <button class="push-link" id="push-done" type="button">Done</button></div>
+    </div>
+  </div>
   <p>Not affiliated with or endorsed by Tesla, Inc.</p>
 </footer>
 <script src="assets/js/core.js?v=95c8ee3dfd"></script>
@@ -79,8 +90,6 @@
 <script src="assets/js/charging.js?v=5e74988c7b"></script>
 <script src="assets/js/cost.js?v=53e8a6133e"></script>
 <script src="assets/js/main.js?v=6742d1a948"></script>
-<script>/* Keep the existing push worker updated; no permission request or enrollment. */
-if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js', {scope:'/', updateViaCache:'none'}).catch(function(){});
-</script>
+<script src="assets/js/push.js?v=18ac2b966d"></script>
 </body>
 </html>
