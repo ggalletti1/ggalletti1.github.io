@@ -8,13 +8,13 @@
    "state": "up_to_date"
   },
   "breakeven": {
-   "fill": 0.5778,
-   "miles": 344,
+   "fill": 0.6054,
+   "miles": 360,
    "target": 595
   },
   "plan_value": {
-   "fill": 0.4187,
-   "value": 0.42
+   "fill": 0.4588,
+   "value": 0.46
   }
  },
  "software": {
@@ -53,27 +53,27 @@
     "current": false
    }
   ],
-  "mine_share": 41.4,
+  "mine_share": 41.5,
   "mine": true,
   "next": null
  },
  "charging": {
   "month": "2026-11",
-  "total_kwh": 107.0,
-  "home_kwh": 107.0,
+  "total_kwh": 117.2,
+  "home_kwh": 117.2,
   "sc_kwh": 0,
   "other_kwh": 0
  },
  "cost": {
   "month": "2026-11",
-  "miles": 344,
-  "miles_exact": 343.8,
+  "miles": 360,
+  "miles_exact": 360.2,
   "total": 115.0,
   "home_plan": 115.0,
   "sc_cost": 0,
   "other_cost": 0,
-  "gas_total": 66.41,
-  "public_only": 48.15,
+  "gas_total": 69.58,
+  "public_only": 52.76,
   "assumptions": {
    "gas_price": 5.602,
    "public_rate": 0.45
