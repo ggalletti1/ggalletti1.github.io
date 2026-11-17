@@ -3,10 +3,10 @@
  "month": "2026-11",
  "rings": {
   "update": {
-   "fill": 0.993,
-   "value": 99.3,
+   "fill": 1.0177,
+   "value": 100.0,
    "state": "rolling",
-   "share": 28.2
+   "share": 28.9
   },
   "breakeven": {
    "fill": 0.7763,
@@ -54,12 +54,12 @@
     "current": false
    }
   ],
-  "mine_share": 22.4,
+  "mine_share": 22.2,
   "mine": true,
   "next": {
    "build": "2026.38.5.13",
    "fsd": "14.3.13",
-   "share": 28.2
+   "share": 28.9
   }
  },
  "charging": {
