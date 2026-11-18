@@ -1,42 +1,5 @@
-/* TRANSITIONAL root worker (scope /) for the Home Screen app paired before the 2026-11-17 move to /mytesla/.
-   Push only: shows notifications and opens /mytesla/. No fetch handler, so the old app loads the root redirect.
-   After Giovanni re-pairs from /mytesla/, replace with a self-unregistering stub, then delete (see ~/tesla/README_SETUP.md). */
+/* Self-unregistering stub (2026-11-17). Replaces the pre-move root push worker (scope /) after Giovanni re-paired at /mytesla/.
+   No push or fetch handlers. Delete this file on or after 2026-12-17 (see ~/tesla/README_SETUP.md). */
 'use strict';
-const APP = '/mytesla/';
 self.addEventListener('install', () => self.skipWaiting());
-self.addEventListener('activate', event => event.waitUntil(self.clients.claim()));
-function eventTitle(id) {
-  if (id.startsWith('rollout:')) return 'New build';
-  if (id.startsWith('car:')) return 'Your update';
-  if (id.startsWith('odds:')) return 'Update odds';
-  if (id.includes(':breakeven:')) return 'Gas break-even';
-  if (id.includes(':plan_value:')) return 'Plan value';
-  if (id.startsWith('summary:')) return 'Monthly summary';
-  return 'Update';
-}
-const TITLES = new Set(['New build', 'Your update', 'Update odds', 'Gas break-even', 'Plan value', 'Monthly summary', 'Update']);
-self.addEventListener('push', event => {
-  let message = {};
-  try { message = event.data ? event.data.json() : {}; } catch (_) {}
-  const id = typeof message.id === 'string' ? message.id : '';
-  const title = TITLES.has(message.title) ? message.title : eventTitle(id);
-  event.waitUntil(self.registration.showNotification(title, {
-    body: typeof message.body === 'string' ? message.body.slice(0, 240) : 'Your Tesla rings have an update.',
-    icon: APP + 'assets/icon-192.png', badge: APP + 'assets/icon-192.png',
-    tag: typeof message.id === 'string' ? message.id.slice(0, 140) : 'mytesla-update',
-    renotify: false, data: {url: APP}
-  }));
-});
-self.addEventListener('notificationclick', event => {
-  event.notification.close();
-  const url = new URL(APP, self.location.origin).href;
-  event.waitUntil(self.clients.matchAll({type: 'window', includeUncontrolled: true}).then(async clients => {
-    for (const client of clients) {
-      const u = new URL(client.url);
-      if (u.origin === self.location.origin && (u.pathname === '/' || u.pathname === '/index.html' || u.pathname.startsWith(APP))) {
-        await client.navigate(url); return client.focus();
-      }
-    }
-    return self.clients.openWindow(url);
-  }));
-});
+self.addEventListener('activate', event => event.waitUntil(self.registration.unregister()));
