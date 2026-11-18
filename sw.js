@@ -1,5 +1,8 @@
-/* Push only. Never cache car data or intercept navigation. */
+/* TRANSITIONAL root worker (scope /) for the Home Screen app paired before the 2026-11-17 move to /mytesla/.
+   Push only: shows notifications and opens /mytesla/. No fetch handler, so the old app loads the root redirect.
+   After Giovanni re-pairs from /mytesla/, replace with a self-unregistering stub, then delete (see ~/tesla/README_SETUP.md). */
 'use strict';
+const APP = '/mytesla/';
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', event => event.waitUntil(self.clients.claim()));
 function eventTitle(id) {
@@ -19,17 +22,18 @@ self.addEventListener('push', event => {
   const title = TITLES.has(message.title) ? message.title : eventTitle(id);
   event.waitUntil(self.registration.showNotification(title, {
     body: typeof message.body === 'string' ? message.body.slice(0, 240) : 'Your Tesla rings have an update.',
-    icon: '/assets/icon-192.png', badge: '/assets/icon-192.png',
+    icon: APP + 'assets/icon-192.png', badge: APP + 'assets/icon-192.png',
     tag: typeof message.id === 'string' ? message.id.slice(0, 140) : 'mytesla-update',
-    renotify: false, data: {url: '/'}
+    renotify: false, data: {url: APP}
   }));
 });
 self.addEventListener('notificationclick', event => {
   event.notification.close();
-  const url = new URL('/', self.location.origin).href;
+  const url = new URL(APP, self.location.origin).href;
   event.waitUntil(self.clients.matchAll({type: 'window', includeUncontrolled: true}).then(async clients => {
     for (const client of clients) {
-      if (new URL(client.url).origin === self.location.origin) {
+      const u = new URL(client.url);
+      if (u.origin === self.location.origin && (u.pathname === '/' || u.pathname === '/index.html' || u.pathname.startsWith(APP))) {
         await client.navigate(url); return client.focus();
       }
     }
