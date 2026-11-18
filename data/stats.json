@@ -20,7 +20,7 @@
  "software": {
   "current": "2026.38.5.13",
   "current_fsd": "14.3.13",
-  "status": "downloading",
+  "status": "waiting for Wi-Fi",
   "history": [
    {
     "version": "2026.38.5.12",
