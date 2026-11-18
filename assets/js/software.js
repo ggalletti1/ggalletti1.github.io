@@ -1,7 +1,7 @@
-/* software: the car's build (installed, or pending: downloading / waiting to install) + FSD, the next North America build, past updates */
+/* software: the car's build (installed, or pending: downloading / waiting for Wi-Fi / waiting to install) + FSD, the next North America build, past updates */
 'use strict';
 function renderSoftware(d) {   // Next update row ('nx'): build, with FSD on a 2nd line inside the same row
-  // title = the car's build (mine once pending); sub = downloading / waiting to install until installed (then the install day)
+  // title = the car's build (mine once pending); sub = downloading / waiting for Wi-Fi / waiting to install until installed (then the install day)
   const s = d.software || {}, n = s.next, cur = (s.history || []).find(b => b.current);
   const st = s.status ? ` · ${esc(s.status)}` : (cur && cur.date ? ` · installed ${day(cur.date)}` : '');
   let h = `<p class="big">${esc(s.current || '—')}</p><p class="sub">FSD ${esc(s.current_fsd || '—')}${st}</p>`;
